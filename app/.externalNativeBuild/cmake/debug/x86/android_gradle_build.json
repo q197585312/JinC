@@ -3,7 +3,7 @@
 	"buildFiles" : [ "E:/JinC/app/CMakeLists.txt" ],
 	"cleanCommands" : 
 	[
-		"D:\\androidsdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build E:\\JinC\\app\\.externalNativeBuild\\cmake\\debug\\x86 --target clean"
+		"D:\\androidSdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build E:\\JinC\\app\\.externalNativeBuild\\cmake\\debug\\x86 --target clean"
 	],
 	"cppFileExtensions" : [ "cpp" ],
 	"libraries" : 
@@ -12,27 +12,27 @@
 		{
 			"abi" : "x86",
 			"artifactName" : "native-lib",
-			"buildCommand" : "D:\\androidsdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build E:\\JinC\\app\\.externalNativeBuild\\cmake\\debug\\x86 --target native-lib",
+			"buildCommand" : "D:\\androidSdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build E:\\JinC\\app\\.externalNativeBuild\\cmake\\debug\\x86 --target native-lib",
 			"buildType" : "debug",
 			"files" : 
 			[
 				
 				{
-					"flags" : "  --target=i686-none-linux-android --gcc-toolchain=D:/androidsdk/ndk-bundle/toolchains/x86-4.9/prebuilt/windows-x86_64 --sysroot=D:/androidsdk/ndk-bundle/sysroot  -Dnative_lib_EXPORTS -isystem D:\\androidsdk\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem D:\\androidsdk\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86\\include -isystem D:\\androidsdk\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem D:/androidsdk/ndk-bundle/sysroot/usr/include/i686-linux-android -D__ANDROID_API__=14 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"flags" : "  --target=i686-none-linux-android --gcc-toolchain=D:/androidSdk/ndk-bundle/toolchains/x86-4.9/prebuilt/windows-x86_64 --sysroot=D:/androidSdk/ndk-bundle/sysroot  -Dnative_lib_EXPORTS -isystem D:\\androidSdk\\ndk-bundle\\sources\\cxx-stl\\llvm-libc++\\include -isystem D:\\androidSdk\\ndk-bundle\\sources\\android\\support\\include -isystem D:\\androidSdk\\ndk-bundle\\sources\\cxx-stl\\llvm-libc++abi\\include  -isystem D:/androidSdk/ndk-bundle/sysroot/usr/include/i686-linux-android -D__ANDROID_API__=14 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11 -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC    -c ",
 					"src" : "E:/JinC/app/src/main/cpp/native-lib.cpp",
 					"workingDirectory" : "E:/JinC/app/.externalNativeBuild/cmake/debug/x86"
 				}
 			],
 			"output" : "E:/JinC/app/build/intermediates/cmake/debug/obj/x86/libnative-lib.so",
-			"toolchain" : "431055689"
+			"toolchain" : "3173279561"
 		}
 	},
 	"toolchains" : 
 	{
-		"431055689" : 
+		"3173279561" : 
 		{
-			"cCompilerExecutable" : "D:/androidsdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
-			"cppCompilerExecutable" : "D:/androidsdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+			"cCompilerExecutable" : "D:/androidSdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
+			"cppCompilerExecutable" : "D:/androidSdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
 		}
 	}
 }
