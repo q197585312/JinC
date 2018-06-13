@@ -1,8 +1,7 @@
 package com.example.administrator.jinc;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,12 +18,24 @@ public class MainActivity extends AppCompatActivity {
 
         // Example of a call to a native method
         TextView tv = (TextView) findViewById(R.id.sample_text);
-        TestNative testNative=new TestNative();
-        String sd=testNative.accessField();
-        Log.d("testNative",sd);
-        Log.d("testNative2",testNative.key);
+        TestNative testNative = new TestNative();
+        int[] arrs = new int[]{10, 3, 4, 7, -1, -2, 8};
+        testNative.giveArray(arrs);
+        StringBuffer buffer = new StringBuffer();
+        for (int arr : arrs) {
+            buffer.append(arr);
+            buffer.append(",");
+        }
+        tv.setText(buffer.toString());
+        testNative.createGlobalRef();
+        tv.setText(testNative.getGlobalRef());
+        testNative.deleteGlobalRef();
+        try {
+            testNative.exeception();
+        } catch (Exception e) {
+            tv.setText(e.getLocalizedMessage());
+        }
 
-        tv.setText(sd);
     }
 
     /**

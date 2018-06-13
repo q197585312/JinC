@@ -1,6 +1,5 @@
 package com.example.administrator.jinc;
 
-import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
 
@@ -14,8 +13,7 @@ public class TestNative {
 	private Human human = new Man();
 	
 	//
-	//private int count = 9;
-	public native static String stringFromJNIStatic();
+
 	//本地方法
 	public native String stringFromJNI();
 	
@@ -23,17 +21,16 @@ public class TestNative {
 	
 	public native void accessStaticField();
 	
-	public native void accessMethod();
+	public native String accessMethod();
+
 	
-	public native static void accessStaticMethod();
-	
-	public native Date accessConstructor();
+	public native long accessConstructor();
 	
 	public native void callNonvirtualMethod();
 	
 	public native String chineseChars(String text);
 	
-	public native void giveArray(int[] array);
+	public static native void  giveArray(int[] array);
 	
 	public native int[] getArray(int len);
 	
@@ -44,7 +41,12 @@ public class TestNative {
 	public native String getGlobalRef();
 	
 	public native void deleteGlobalRef();
-	
+
+	public native void exeception();
+
+	public native void cached();
+
+	public native static void initIds();
 	public static void main(String[] args) {
 		TestNative t = new TestNative();
 		//调用stringFromJNI方法，实际会去查找调用
