@@ -47,6 +47,11 @@ public class TestNative {
 	public native void cached();
 
 	public native static void initIds();
+
+
+	//文件处理
+	public native void diffFile(String path,String path_pattern,int count);
+	public native void mergeFile(String path_pattern,int count,String merge_path);
 	public static void main(String[] args) {
 		TestNative t = new TestNative();
 		//调用stringFromJNI方法，实际会去查找调用

@@ -2,6 +2,7 @@
 #include <string>
 #include <stdlib.h>
 #include <stdio.h>
+#include <android/log.h>
 
 
 int compare(const void *a, const void *b) {
@@ -307,4 +308,117 @@ Java_com_example_administrator_jinc_Cryptor_decrypt(JNIEnv *env, jobject instanc
 
     env->ReleaseStringUTFChars(crypt_path_, crypt_path);
     env->ReleaseStringUTFChars(decrypt_path_, decrypt_path);
+}extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_administrator_jinc_TestNative_diffFile(JNIEnv *env, jobject instance) {
+
+    // TODO
+
+}extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_administrator_jinc_TestNative_diffFile(JNIEnv *env, jobject instance,
+                                                        jstring path_, jstring path_pattern_,
+                                                        jint count) {
+    const char *path = env->GetStringUTFChars(path_, 0);
+    const char *path_pattern = env->GetStringUTFChars(path_pattern_, 0);
+
+    // TODO
+
+    env->ReleaseStringUTFChars(path_, path);
+    env->ReleaseStringUTFChars(path_pattern_, path_pattern);
+}extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_administrator_jinc_TestNative_mergeFile(JNIEnv *env, jobject instance,
+                                                         jstring path_, jstring path_pattern_,
+                                                         jint file_num) {
+    const char *path = env->GetStringUTFChars(path_, 0);
+    const char *path_pattern = env->GetStringUTFChars(path_pattern_, 0);
+//jstring -> char*
+    //需要分割的文件路径
+
+
+    //得到分割之后的子文件的路径列表
+    char **patches = static_cast<char **>(malloc(sizeof(char*) * file_num));
+    int i = 0;
+    for (; i < file_num; i++) {
+        patches[i] = static_cast<char *>(malloc(sizeof(char) * 100));
+        //元素赋值
+        //需要分割的文件：C://jason/liuyan.png
+        //子文件：C://jason/liuyan_%d.png
+        sprintf(patches[i], path_pattern, (i+1));
+        LOGI("patch path:%s",patches[i]);
+    }
+
+    //不断读取path文件，循环写入file_num个文件中
+    //	整除
+    //	文件大小：90，分成9个文件，每个文件10
+    //	不整除
+    //	文件大小：110，分成9个文件，
+    //	前(9-1)个文件为(110/(9-1))=13
+    //	最后一个文件(110%(9-1))=6
+    int filesize = get_file_size(path);
+    FILE *fpr = fopen(path,"rb");
+    //整除
+    if(filesize % file_num == 0){
+        //单个文件大小
+        int part = filesize / file_num;
+        i = 0;
+        //逐一写入不同的分割子文件中
+        for (; i < file_num; i++) {
+            FILE *fpw = fopen(patches[i], "wb");
+            int j = 0;
+            for(; j < part; j++){
+                //边读边写
+                fputc(fgetc(fpr),fpw);
+            }
+            fclose(fpw);
+        }
+    }
+    else{
+        //不整除
+        int part = filesize / (file_num - 1);
+        i = 0;
+        //逐一写入不同的分割子文件中
+        for (; i < file_num - 1; i++) {
+            FILE *fpw = fopen(patches[i], "wb");
+            int j = 0;
+            for(; j < part; j++){
+                //边读边写
+                fputc(fgetc(fpr),fpw);
+            }
+            fclose(fpw);
+        }
+        //the last one
+        FILE *fpw = fopen(patches[file_num - 1], "wb");
+        i = 0;
+        for(; i < filesize % (file_num - 1); i++){
+            fputc(fgetc(fpr),fpw);
+        }
+        fclose(fpw);
+    }
+
+    //关闭被分割的文件
+    fclose(fpr);
+
+    //释放
+    i = 0;
+    for(; i < file_num; i++){
+        free(patches[i]);
+    }
+    free(patches);
+
+    env->ReleaseStringUTFChars(path_, path);
+    env->ReleaseStringUTFChars(path_pattern_, path_pattern);
+}extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_administrator_jinc_TestNative_mergeFile(JNIEnv *env, jobject instance,
+                                                         jstring path_pattern_, jint count,
+                                                         jstring merge_path_) {
+    const char *path_pattern = env->GetStringUTFChars(path_pattern_, 0);
+    const char *merge_path = env->GetStringUTFChars(merge_path_, 0);
+
+
+
+    env->ReleaseStringUTFChars(path_pattern_, path_pattern);
+    env->ReleaseStringUTFChars(merge_path_, merge_path);
 }
